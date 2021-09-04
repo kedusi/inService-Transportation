@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>
+            {{company.name}}{% if title %} - {{ title }}{% endif %}
+        </title>
+        <meta name="description" content="{% if description %}{{ description }}{% else %}{{ company.description }}{% endif %}">
+        <!-- <link rel="stylesheet" href={{styles}}> -->
+    </head>
+
+    <body>
+        <header>
+            <h1>{{company.name}}
+        </header>
+        <nav>
+            <ul>
+                {% for item in collections.mainNav %}
+                    <li><a href='/{{item.data.title | slug}}/'
+                        {% if item.permalink == page.url %}
+                            aria-current="page" data-state="active"
+                        {% endif %}
+                        >{{item.data.title}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+
+        <main>
+            <h2>{{title}}</h2>
+            {{content | safe}}
+        </main>
+
+        <footer>
+            <p>&copy; 2021 All rights reserved</p>
+        </footer>
+    </body>
+</html>
